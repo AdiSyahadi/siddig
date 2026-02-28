@@ -1,0 +1,586 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+
+    /* Brand Colors - SidodadiDigital Dark Theme */
+    --color-brand-50: #e6f7ff;
+    --color-brand-100: #b3e0ff;
+    --color-brand-200: #80caff;
+    --color-brand-300: #4db3ff;
+    --color-brand-400: #1a9dff;
+    --color-brand-500: #0080e6;
+    --color-brand-600: #0066b3;
+    --color-brand-700: #004d80;
+    --color-brand-800: #00334d;
+    --color-brand-900: #001a26;
+
+    /* Dark Background Palette */
+    --color-dark-950: #020a13;
+    --color-dark-900: #0a1628;
+    --color-dark-800: #0f1f35;
+    --color-dark-700: #162a45;
+    --color-dark-600: #1e3a5c;
+    --color-dark-500: #2a4a6b;
+
+    /* Card & Surface */
+    --color-surface: #0d1b2a;
+    --color-surface-hover: #112240;
+    --color-surface-border: #1b2d45;
+}
+
+/* ========================================
+   Light Theme Override
+   Overrides CSS custom properties so all Tailwind
+   utilities (bg-dark-*, text-white, text-gray-*, etc.)
+   automatically adapt. No template changes needed.
+   ======================================== */
+:root.light {
+    /* Backgrounds: dark → light */
+    --color-dark-950: #ffffff;
+    --color-dark-900: #f8fafc;
+    --color-dark-800: #f1f5f9;
+    --color-dark-700: #e2e8f0;
+    --color-dark-600: #cbd5e1;
+    --color-dark-500: #94a3b8;
+
+    /* Surface: dark cards → white cards */
+    --color-surface: #ffffff;
+    --color-surface-hover: #f1f5f9;
+    --color-surface-border: #e2e8f0;
+
+    /* Text inversion: light text → dark text */
+    --color-white: #0f172a;
+    --color-gray-100: #1e293b;
+    --color-gray-200: #334155;
+    --color-gray-300: #475569;
+    --color-gray-400: #64748b;
+    --color-gray-500: #94a3b8;
+    --color-gray-600: #cbd5e1;
+
+    /* Brand: boost contrast on white backgrounds */
+    --color-brand-300: #0284c7;
+    --color-brand-400: #0369a1;
+
+    /* Green: ensure visibility on white */
+    --color-green-400: #16a34a;
+}
+
+/* Force true-white text on solid brand-bg buttons in light mode */
+.light .cta-primary-glow,
+.light nav a[class*="bg-brand-5"],
+.light nav a[class*="bg-brand-6"] {
+    color: #fff !important;
+}
+
+/* ---- Light Mode: Clean all glow / radial artifacts ---- */
+
+/* Stats section: pure clean white, no blue tinting */
+.light .stats-bg-radial {
+    background: #ffffff;
+}
+
+/* Kill glow arc entirely — designed for dark only */
+.light .premium-glow-arc {
+    display: none;
+}
+
+/* Kill section ambient glow blobs */
+.light .section-glow::before {
+    display: none;
+}
+
+/* Kill SVG animated curves — neon doesn't work on white */
+.light .stats-curve-animated {
+    opacity: 0;
+}
+
+/* Kill CTA button glow breathe — blue shadow on white is ugly */
+.light .cta-primary-glow {
+    animation: none;
+    box-shadow: 0 4px 14px -3px rgba(0, 128, 230, 0.3);
+}
+
+/* Kill hero background glow orbs */
+.light .hero-bg-orb {
+    display: none;
+}
+
+/* Noise overlay off in light mode */
+.light::after {
+    display: none;
+}
+
+/* Navbar scroll bg in light mode: clean white glass */
+.light nav.bg-dark-950\/90 {
+    --tw-bg-opacity: 0.95;
+}
+
+/* Testimonial card borders: slightly stronger for definition */
+.light .testimonial-scroll-wrapper::before {
+    background: linear-gradient(to right, #ffffff, transparent);
+}
+.light .testimonial-scroll-wrapper::after {
+    background: linear-gradient(to left, #ffffff, transparent);
+}
+
+/* Stats top gradient overlay: white blend */
+.light .stats-top-fade {
+    background: linear-gradient(to bottom, #ffffff, transparent) !important;
+}
+
+/* Hero background gradient: neutral in light mode */
+.light .hero-bg-gradient {
+    background: linear-gradient(to bottom, #f0f7ff, #ffffff, #ffffff) !important;
+}
+
+/* Light mode cards: add subtle shadow for depth */
+.light .touch-card,
+.light .bg-surface {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.light .touch-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* Light mode pricing popular card: enhanced shadow */
+.light .border-brand-500\/50 {
+    box-shadow: 0 8px 24px rgba(0, 128, 230, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Light mode section dividers: softer */
+.light .section-divider {
+    background: linear-gradient(to right, transparent, #e2e8f0 30%, #0369a1 50%, #e2e8f0 70%, transparent);
+}
+
+/* Light mode form inputs */
+.light input,
+.light textarea,
+.light select {
+    background: #f8fafc !important;
+    border-color: #e2e8f0 !important;
+    color: #0f172a !important;
+}
+.light input::placeholder,
+.light textarea::placeholder {
+    color: #94a3b8 !important;
+}
+.light input:focus,
+.light textarea:focus,
+.light select:focus {
+    border-color: #0369a1 !important;
+    ring-color: #0369a1 !important;
+}
+
+/* Light mode navbar glass effect */
+.light nav.bg-dark-950\/90 {
+    background: rgba(255, 255, 255, 0.92) !important;
+    backdrop-filter: blur(12px) saturate(180%);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+/* Light mode select dropdown */
+.light select option {
+    background: #ffffff;
+    color: #0f172a;
+}
+
+/* Light mode gradient text still visible */
+.light .bg-gradient-to-r.from-brand-300.to-brand-500 {
+    --tw-gradient-from: #0284c7;
+    --tw-gradient-to: #0369a1;
+}
+
+/* Alpine.js x-cloak: hide elements until Alpine initializes */
+[x-cloak] {
+    display: none !important;
+}
+
+/* Hide scrollbar for testimonial horizontal scroll */
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* ========================================
+   Stats Section - Animated Curve
+   ======================================== */
+
+/* Draw-in animation: SVG stroke reveals from left to right */
+@keyframes curve-draw {
+    from {
+        stroke-dashoffset: 1600;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* Subtle glow pulse on the curve */
+@keyframes curve-glow {
+    0%, 100% {
+        opacity: 0.4;
+        filter: drop-shadow(0 0 6px rgba(26, 157, 255, 0.3));
+    }
+    50% {
+        opacity: 0.8;
+        filter: drop-shadow(0 0 18px rgba(26, 157, 255, 0.6));
+    }
+}
+
+/* Base state: hidden until triggered */
+.stats-curve-path {
+    stroke-dasharray: 1600;
+    stroke-dashoffset: 1600;
+    will-change: stroke-dashoffset, opacity, filter;
+}
+
+/* When visible (Alpine adds this class) */
+.stats-curve-animated .stats-curve-path {
+    animation: curve-draw 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.stats-curve-animated .stats-curve-glow {
+    animation:
+        curve-draw 2s cubic-bezier(0.4, 0, 0.2, 1) forwards,
+        curve-glow 4s ease-in-out 2s infinite;
+}
+
+/* Stagger the second and third curves */
+.stats-curve-animated .stats-curve-path-2 {
+    animation-delay: 0.3s;
+}
+
+.stats-curve-animated .stats-curve-glow-2 {
+    animation-delay: 0.3s;
+}
+
+.stats-curve-animated .stats-curve-path-3 {
+    animation-delay: 0.6s;
+}
+
+.stats-curve-animated .stats-curve-glow-3 {
+    animation-delay: 0.6s;
+}
+
+/* ========================================
+   Hero - CSS-only Entry Animation (no JS dependency)
+   ======================================== */
+@keyframes hero-fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-animate {
+    animation: hero-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-animate-d1 {
+    animation: hero-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+.hero-animate-d2 {
+    animation: hero-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+.hero-animate-d3 {
+    animation: hero-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+}
+
+/* ========================================
+   Scroll Reveal Animations
+   ======================================== */
+
+/* Base state: hidden, shifted down */
+.reveal-base {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+        opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+/* Visible state: triggered by Alpine x-intersect */
+.reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger delays for child elements */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+.reveal-delay-6 { transition-delay: 0.6s; }
+
+/* ========================================
+   Accessibility: Reduced Motion
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+    .reveal-base {
+        transition-duration: 0.01ms !important;
+        transition-delay: 0s !important;
+    }
+    .hero-animate,
+    .hero-animate-d1,
+    .hero-animate-d2,
+    .hero-animate-d3 {
+        animation-duration: 0.01ms !important;
+        animation-delay: 0s !important;
+    }
+    .stats-curve-path,
+    .stats-curve-glow {
+        animation-duration: 0.01ms !important;
+    }
+    .marquee-track,
+    .marquee-track-reverse {
+        animation-duration: 0.01ms !important;
+    }
+    .cta-primary-glow {
+        animation: none !important;
+    }
+    .premium-glow-arc {
+        animation: none !important;
+    }
+}
+
+/* ========================================
+   Testimonial Scroll Fade Hints
+   ======================================== */
+.testimonial-scroll-wrapper {
+    position: relative;
+}
+
+.testimonial-scroll-wrapper::before,
+.testimonial-scroll-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 3rem;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.testimonial-scroll-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, var(--color-dark-950), transparent);
+}
+
+.testimonial-scroll-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, var(--color-dark-950), transparent);
+}
+
+/* ========================================
+   Testimonial Marquee Auto-Scroll
+   ======================================== */
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 45s linear infinite;
+}
+
+.marquee-track-reverse {
+    display: flex;
+    width: max-content;
+    animation: marquee-reverse 45s linear infinite;
+}
+
+.marquee-wrapper:hover .marquee-track,
+.marquee-wrapper:hover .marquee-track-reverse {
+    animation-play-state: paused;
+}
+
+/* ========================================
+   Section Divider (subtle gradient line)
+   ======================================== */
+.section-divider {
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--color-surface-border) 30%,
+        var(--color-brand-600) 50%,
+        var(--color-surface-border) 70%,
+        transparent
+    );
+    opacity: 0.5;
+}
+
+/* ========================================
+   Touch Active States + Hover Micro-Interactions
+   ======================================== */
+.touch-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.touch-card:hover {
+    transform: scale(1.02);
+}
+
+.touch-card:active {
+    transform: scale(0.98);
+}
+
+.touch-btn {
+    transition: transform 0.15s ease, box-shadow 0.2s ease, background-color 0.2s ease, opacity 0.15s ease;
+}
+
+.touch-btn:active {
+    transform: scale(0.96);
+    opacity: 0.9;
+}
+
+/* CTA glow breathe animation for primary buttons */
+@keyframes cta-glow-breathe {
+    0%, 100% { box-shadow: 0 10px 25px -5px rgba(0, 128, 230, 0.20); }
+    50%      { box-shadow: 0 10px 30px -3px rgba(0, 128, 230, 0.35); }
+}
+
+.cta-primary-glow {
+    animation: cta-glow-breathe 3s ease-in-out infinite;
+}
+
+/* ========================================
+   Visual Depth: Noise Texture Overlay
+   ======================================== */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    pointer-events: none;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+}
+
+/* ========================================
+   Visual Depth: Section Ambient Glows
+   ======================================== */
+.section-glow {
+    position: relative;
+}
+
+.section-glow::before {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.07;
+    filter: blur(120px);
+    background: var(--color-brand-500);
+}
+
+.section-glow-tr::before {
+    top: -200px;
+    right: -150px;
+}
+
+.section-glow-cl::before {
+    top: 50%;
+    left: -200px;
+    transform: translateY(-50%);
+}
+
+.section-glow-bc::before {
+    bottom: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* ========================================
+   Premium Radial Glow Arc
+   ======================================== */
+@keyframes glow-arc-breathe {
+    0%, 100% {
+        opacity: 0.2;
+        transform: translateX(-50%) scale(1);
+    }
+    50% {
+        opacity: 0.35;
+        transform: translateX(-50%) scale(1.03);
+    }
+}
+
+/* Stats section deep navy radial background */
+.stats-bg-radial {
+    background: radial-gradient(
+        circle at 50% 30%,
+        #0f2b4d 0%,
+        #071426 60%,
+        #040b16 100%
+    );
+}
+
+.premium-glow-arc {
+    position: absolute;
+    bottom: -280px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120%;
+    height: 600px;
+    max-width: 1400px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(60px);
+    animation: glow-arc-breathe 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    background:
+        radial-gradient(
+            ellipse 60% 50% at 50% 100%,
+            rgba(0, 170, 255, 0.35) 0%,
+            rgba(0, 170, 255, 0.12) 35%,
+            transparent 65%
+        ),
+        radial-gradient(
+            ellipse 75% 60% at 50% 100%,
+            rgba(0, 136, 221, 0.20) 0%,
+            rgba(0, 136, 221, 0.06) 45%,
+            transparent 75%
+        ),
+        radial-gradient(
+            ellipse 90% 75% at 50% 100%,
+            rgba(0, 107, 179, 0.12) 0%,
+            rgba(0, 107, 179, 0.03) 55%,
+            transparent 85%
+        ),
+        radial-gradient(
+            ellipse 100% 85% at 50% 100%,
+            rgba(0, 77, 128, 0.08) 0%,
+            transparent 80%
+        );
+}
