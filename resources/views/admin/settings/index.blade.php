@@ -4,7 +4,7 @@
 @section('page_title', 'Site Settings')
 
 @section('content')
-    <form method="POST" action="{{ route('admin.settings.update') }}" class="space-y-8 max-w-3xl">
+    <form method="POST" action="{{ route('admin.settings.update') }}" class="space-y-8 max-w-3xl" enctype="multipart/form-data">
         @csrf
 
         {{-- General --}}
@@ -178,6 +178,40 @@
                               class="w-full px-4 py-3 text-sm bg-dark-800 border border-surface-border rounded-xl text-white font-mono placeholder-gray-500 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 outline-none resize-none"
                               placeholder="<!-- paste custom script here -->">{{ \App\Models\SiteSetting::getValue('custom_body_script', '') }}</textarea>
                 </div>
+            </div>
+        </div>
+
+        {{-- OG Image --}}
+        <div class="bg-surface border border-surface-border rounded-xl p-6">
+            <h2 class="text-base font-semibold text-white mb-1 flex items-center gap-2">
+                <svg class="w-5 h-5 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                OG Image (Social Media Preview)
+            </h2>
+            <p class="text-xs text-gray-500 mb-4">Gambar yang muncul saat link di-share di WhatsApp, Instagram, Facebook, dll. Ukuran ideal: <strong class="text-gray-400">1200 × 630 px</strong>, format JPG/PNG, maks 5MB.</p>
+
+            @php $currentOg = \App\Models\SiteSetting::getValue('og_image_url', 'images/og-cover.png'); @endphp
+
+            {{-- Current preview --}}
+            <div class="mb-4">
+                <p class="text-xs text-gray-500 mb-2">Preview saat ini:</p>
+                <img src="{{ asset($currentOg) }}" alt="OG Image" class="w-full max-w-sm rounded-lg border border-surface-border object-cover" style="aspect-ratio:1200/630">
+            </div>
+
+            {{-- Upload input --}}
+            <div x-data="{ fileName: '' }">
+                <label class="block text-sm text-gray-400 mb-1.5">Upload OG Image Baru</label>
+                <div class="flex items-center gap-3">
+                    <label class="cursor-pointer flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-dark-800 border border-surface-border rounded-xl hover:border-brand-500 transition-colors">
+                        <svg class="w-4 h-4 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+                        Pilih Gambar
+                        <input type="file" name="og_image" accept="image/jpeg,image/png,image/webp" class="hidden"
+                               x-on:change="fileName = $event.target.files[0]?.name ?? ''">
+                    </label>
+                    <span class="text-sm text-gray-400" x-text="fileName || 'Belum ada file dipilih'"></span>
+                </div>
+                @error('og_image')
+                    <p class="mt-1.5 text-xs text-red-400">{{ $message }}</p>
+                @enderror
             </div>
         </div>
 

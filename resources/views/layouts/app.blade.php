@@ -82,7 +82,8 @@
     <meta property="og:description" content="@yield('meta_description', 'SidodadiDigital - Jasa Pembuatan Website Profesional. Kami membantu bisnis Anda berkembang dengan solusi digital terbaik.')">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:site_name" content="SidodadiDigital">
-    <meta property="og:image" content="{{ asset('images/og-cover.png') }}">
+    @php $__ogImage = \App\Models\SiteSetting::getValue('og_image_url', 'images/og-cover.png'); @endphp
+    <meta property="og:image" content="{{ asset($__ogImage) }}">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -93,7 +94,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="@yield('title', 'SidodadiDigital - Jasa Pembuatan Website Profesional')">
     <meta name="twitter:description" content="@yield('meta_description', 'SidodadiDigital - Jasa Pembuatan Website Profesional. Kami membantu bisnis Anda berkembang dengan solusi digital terbaik.')">
-    <meta name="twitter:image" content="{{ asset('images/og-cover.png') }}">
+    <meta name="twitter:image" content="{{ asset($__ogImage) }}">
 
     <title>@yield('title', 'SidodadiDigital - Jasa Pembuatan Website Profesional')</title>
 
