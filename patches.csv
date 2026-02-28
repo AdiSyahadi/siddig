@@ -2,3 +2,4 @@ patch_id,objective,files_changed,status,verification_note
 073,Fix favicon implementation to use SVG,resources/views/layouts/app.blade.php,done,SVG favicon primary + ICO fallback + apple-touch-icon added
 074,Implement OG image for social media preview,public/images/og-cover.png + resources/views/layouts/app.blade.php,done,1200x630 PNG created + og:image meta updated
 075,OG image upload via admin panel,SiteSettingController.php + settings/index.blade.php + layouts/app.blade.php,done,File upload with validation + storage/public disk + dynamic meta tag
+076,Fix admin panel styling - fresh CSS build + Alpine.js + build in git,.gitignore + public/build/ + admin layouts,done,CSS rebuilt with all admin classes + Alpine.js in head + build deployed via git
