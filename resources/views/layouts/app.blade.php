@@ -82,7 +82,8 @@
     <meta property="og:description" content="@yield('meta_description', 'SidodadiDigital - Jasa Pembuatan Website Profesional. Kami membantu bisnis Anda berkembang dengan solusi digital terbaik.')">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:site_name" content="SidodadiDigital">
-    <meta property="og:image" content="{{ asset('images/og-cover.jpg') }}">
+    <meta property="og:image" content="{{ asset('images/og-cover.png') }}">
+    <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:locale" content="id_ID">
@@ -92,12 +93,14 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="@yield('title', 'SidodadiDigital - Jasa Pembuatan Website Profesional')">
     <meta name="twitter:description" content="@yield('meta_description', 'SidodadiDigital - Jasa Pembuatan Website Profesional. Kami membantu bisnis Anda berkembang dengan solusi digital terbaik.')">
-    <meta name="twitter:image" content="{{ asset('images/og-cover.jpg') }}">
+    <meta name="twitter:image" content="{{ asset('images/og-cover.png') }}">
 
     <title>@yield('title', 'SidodadiDigital - Jasa Pembuatan Website Profesional')</title>
 
     {{-- Favicon --}}
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('images/favicon.svg') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" sizes="32x32">
+    <link rel="apple-touch-icon" href="{{ asset('images/favicon.svg') }}">
 
     {{-- Google Fonts: Inter (optimized weights) --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">

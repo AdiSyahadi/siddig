@@ -1,0 +1,3 @@
+patch_id,objective,files_changed,status,verification_note
+073,Fix favicon implementation to use SVG,resources/views/layouts/app.blade.php,done,SVG favicon primary + ICO fallback + apple-touch-icon added
+074,Implement OG image for social media preview,public/images/og-cover.png + resources/views/layouts/app.blade.php,done,1200x630 PNG created + og:image meta updated

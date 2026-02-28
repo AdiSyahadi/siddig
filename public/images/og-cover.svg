@@ -1,0 +1,73 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#020a13"/>
+      <stop offset="100%" style="stop-color:#0a1628"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#22d3ee"/>
+      <stop offset="50%" style="stop-color:#98E4FF"/>
+      <stop offset="100%" style="stop-color:#22d3ee"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  
+  <!-- Subtle grid pattern -->
+  <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+    <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(34,211,238,0.05)" stroke-width="1"/>
+  </pattern>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  
+  <!-- Glow arc decoration top -->
+  <ellipse cx="600" cy="-100" rx="500" ry="200" fill="none" stroke="url(#glow)" stroke-width="2" opacity="0.3"/>
+  
+  <!-- Logo icon (D shape from favicon) -->
+  <g transform="translate(200, 215)">
+    <rect width="200" height="200" rx="38" fill="#98E4FF"/>
+    <path d="M56 37.5 H100 C134.5 37.5 162.5 65.5 162.5 100 C162.5 134.5 134.5 162.5 100 162.5 H56 V37.5Z" 
+          stroke="#fff" 
+          stroke-width="16" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"
+          fill="none"/>
+    <rect x="78" y="87.5" width="12.5" height="50" rx="6.25" fill="#fff"/>
+    <rect x="103" y="62.5" width="12.5" height="75" rx="6.25" fill="#fff"/>
+    <rect x="128" y="112.5" width="12.5" height="25" rx="6.25" fill="#fff"/>
+  </g>
+  
+  <!-- Company name -->
+  <text x="430" y="290" font-family="Inter, system-ui, sans-serif" font-size="64" font-weight="700" fill="#ffffff">
+    SidodadiDigital
+  </text>
+  
+  <!-- Tagline -->
+  <text x="430" y="355" font-family="Inter, system-ui, sans-serif" font-size="28" font-weight="400" fill="#98E4FF">
+    Jasa Pembuatan Website Profesional
+  </text>
+  
+  <!-- Services badges -->
+  <g transform="translate(430, 390)">
+    <rect x="0" y="0" width="160" height="40" rx="20" fill="rgba(34,211,238,0.15)" stroke="rgba(34,211,238,0.3)" stroke-width="1"/>
+    <text x="80" y="26" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="500" fill="#22d3ee" text-anchor="middle">Company Profile</text>
+    
+    <rect x="175" y="0" width="130" height="40" rx="20" fill="rgba(34,211,238,0.15)" stroke="rgba(34,211,238,0.3)" stroke-width="1"/>
+    <text x="240" y="26" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="500" fill="#22d3ee" text-anchor="middle">E-Commerce</text>
+    
+    <rect x="320" y="0" width="130" height="40" rx="20" fill="rgba(34,211,238,0.15)" stroke="rgba(34,211,238,0.3)" stroke-width="1"/>
+    <text x="385" y="26" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="500" fill="#22d3ee" text-anchor="middle">Landing Page</text>
+    
+    <rect x="465" y="0" width="110" height="40" rx="20" fill="rgba(34,211,238,0.15)" stroke="rgba(34,211,238,0.3)" stroke-width="1"/>
+    <text x="520" y="26" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="500" fill="#22d3ee" text-anchor="middle">Web App</text>
+  </g>
+  
+  <!-- URL at bottom -->
+  <text x="600" y="580" font-family="Inter, system-ui, sans-serif" font-size="22" font-weight="500" fill="rgba(255,255,255,0.6)" text-anchor="middle">
+    sidodadidigital.com
+  </text>
+  
+  <!-- Glow arc decoration bottom -->
+  <ellipse cx="600" cy="730" rx="500" ry="200" fill="none" stroke="url(#glow)" stroke-width="2" opacity="0.3"/>
+</svg>
